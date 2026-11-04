@@ -1,63 +1,110 @@
 class TemperatureSvgCard extends HTMLElement {
-    async setConfig(config) {
-        if (!config.entity) {
-            throw new Error("Please define a temperature entity");
-        }
-
-        this.config = config;
-        const response = await fetch(config.svg);
-        const svgText = await response.text();
-
-        this.innerHTML = `
-    <ha-card>
-      <div style="padding: 12px;">
-        ${svgText}
-      </div>
-    </ha-card>
-  `;
-
+  setConfig(config) {
+    if (!config.entity || !config.svg) {
+      throw new Error("Please define entity and svg");
     }
 
-    set hass(hass) {
-        this._hass = hass;
+    this.config = config;
 
-        if (!this.config) return;
+    this.innerHTML = `
+      <ha-card>
+        <div id="svg-container" style="padding: 12px;">
+          Loading SVG...
+        </div>
+      </ha-card>
+    `;
 
-        const state = hass.states[this.config.entity];
+    this.loadSvg();
+  }
 
-        if (!state) return;
+  async loadSvg() {
+    try {
+      const response = await fetch(this.config.svg);
 
-        const temperature = Number(state.state);
+      if (!response.ok) {
+        throw new Error(`SVG loading failed: ${response.status}`);
+      }
 
-        if (!Number.isFinite(temperature)) return;
+      const svgText = await response.text();
 
-        const svg = this.querySelector("svg");
-        const text = svg.getElementById("temperature");
-        const mercury = svg.getElementById("mercury");
-        const bulb = svg.getElementById("bulb");
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(
+        svgText,
+        "image/svg+xml"
+      );
 
-        // Display temperature
-        text.textContent = `${temperature.toFixed(1)} °C`;
+      const svg = doc.documentElement;
 
-        // Choose color based on temperature
-        let color = "#03a9f4";
+      if (
+        svg.tagName !== "svg" ||
+        doc.querySelector("parsererror")
+      ) {
+        throw new Error("Invalid SVG file");
+      }
 
-        if (temperature >= 25) {
-            color = "#f44336";
-        } else if (temperature >= 20) {
-            color = "#ff9800";
-        }
+      const container = this.querySelector("#svg-container");
 
-        mercury.setAttribute("fill", color);
-        bulb.setAttribute("fill", color);
+      container.innerHTML = "";
+      container.appendChild(
+        document.importNode(svg, true)
+      );
+
+      this.updateTemperature();
+    } catch (error) {
+      console.error("Temperature SVG Card:", error);
+
+      this.querySelector("#svg-container").textContent =
+        "Error loading SVG";
+    }
+  }
+
+  set hass(hass) {
+    this._hass = hass;
+    this.updateTemperature();
+  }
+
+  updateTemperature() {
+    if (!this._hass || !this.config) return;
+
+    const state = this._hass.states[this.config.entity];
+
+    if (!state || !Number.isFinite(Number(state.state))) {
+      return;
     }
 
-    getCardSize() {
-        return 3;
+    const temperature = Number(state.state);
+
+    const svg = this.querySelector("#svg-container svg");
+
+    // SVG may not have loaded yet
+    if (!svg) return;
+
+    const text = svg.querySelector("#temperature");
+    const mercury = svg.querySelector("#mercury");
+    const bulb = svg.querySelector("#bulb");
+
+    if (text) {
+      text.textContent = `${temperature.toFixed(1)} °C`;
     }
+
+    let color = "#03a9f4";
+
+    if (temperature >= 25) {
+      color = "#f44336";
+    } else if (temperature >= 20) {
+      color = "#ff9800";
+    }
+
+    if (mercury) mercury.setAttribute("fill", color);
+    if (bulb) bulb.setAttribute("fill", color);
+  }
+
+  getCardSize() {
+    return 3;
+  }
 }
 
 customElements.define(
-    "temperature-svg-card",
-    TemperatureSvgCard
+  "temperature-svg-card",
+  TemperatureSvgCard
 );
