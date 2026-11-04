@@ -1,0 +1,46 @@
+<svg viewBox="0 0 200 140"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect width="200" height="140"
+        rx="16" fill="#202020"/>
+
+  <!-- Thermometer outline -->
+  <rect x="30" y="25"
+        width="20" height="65"
+        rx="10"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="4"/>
+
+  <!-- Thermometer bulb -->
+  <circle cx="40" cy="95" r="15"
+          fill="#ffffff"/>
+
+  <!-- Temperature fill -->
+  <rect id="mercury"
+        x="36" y="55"
+        width="8" height="40"
+        rx="4"
+        fill="#03a9f4"/>
+
+  <circle id="bulb"
+          cx="40" cy="95" r="10"
+          fill="#03a9f4"/>
+
+  <!-- Temperature value -->
+  <text id="temperature"
+        x="75" y="80"
+        font-size="32"
+        fill="#ffffff"
+        font-family="Arial">
+    -- °C
+  </text>
+
+  <text x="75" y="105"
+        font-size="12"
+        fill="#aaaaaa"
+        font-family="Arial">
+    Temperature
+  </text>
+</svg>
