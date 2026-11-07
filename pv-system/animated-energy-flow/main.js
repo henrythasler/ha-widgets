@@ -1,4 +1,4 @@
-class TemperatureSvgCard extends HTMLElement {
+class EnergyFlowSvgCard extends HTMLElement {
   setConfig(config) {
     if (!config.entity || !config.svg) {
       throw new Error("Please define entity and svg");
@@ -49,7 +49,7 @@ class TemperatureSvgCard extends HTMLElement {
         document.importNode(svg, true)
       );
 
-      this.updateTemperature();
+      this.updateEnergyFlow();
     } catch (error) {
       console.error("Temperature SVG Card:", error);
 
@@ -60,10 +60,10 @@ class TemperatureSvgCard extends HTMLElement {
 
   set hass(hass) {
     this._hass = hass;
-    this.updateTemperature();
+    this.updateEnergyFlow();
   }
 
-  updateTemperature() {
+  updateEnergyFlow() {
     if (!this._hass || !this.config) return;
 
     const state = this._hass.states[this.config.entity];
@@ -72,31 +72,31 @@ class TemperatureSvgCard extends HTMLElement {
       return;
     }
 
-    const temperature = Number(state.state);
+    const energy = Number(state.state);
 
     const svg = this.querySelector("#svg-container svg");
 
     // SVG may not have loaded yet
     if (!svg) return;
 
-    const text = svg.querySelector("#temperature");
-    const mercury = svg.querySelector("#mercury");
-    const bulb = svg.querySelector("#bulb");
+    // const text = svg.querySelector("#temperature");
+    // const mercury = svg.querySelector("#mercury");
+    // const bulb = svg.querySelector("#bulb");
 
-    if (text) {
-      text.textContent = `${temperature.toFixed(1)} °C`;
-    }
+    // if (text) {
+    //   text.textContent = `${temperature.toFixed(1)} °C`;
+    // }
 
-    let color = "#03a9f4";
+    // let color = "#03a9f4";
 
-    if (temperature >= 25) {
-      color = "#f44336";
-    } else if (temperature >= 20) {
-      color = "#ff9800";
-    }
+    // if (temperature >= 25) {
+    //   color = "#f44336";
+    // } else if (temperature >= 20) {
+    //   color = "#ff9800";
+    // }
 
-    if (mercury) mercury.setAttribute("fill", color);
-    if (bulb) bulb.setAttribute("fill", color);
+    // if (mercury) mercury.setAttribute("fill", color);
+    // if (bulb) bulb.setAttribute("fill", color);
   }
 
   getCardSize() {
@@ -105,6 +105,6 @@ class TemperatureSvgCard extends HTMLElement {
 }
 
 customElements.define(
-  "temperature-svg-card",
-  TemperatureSvgCard
+  "energy-flow-svg-card",
+  EnergyFlowSvgCard
 );
