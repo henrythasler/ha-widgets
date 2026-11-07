@@ -1,7 +1,7 @@
 class EnergyFlowSvgCard extends HTMLElement {
   setConfig(config) {
-    if (!config.entity || !config.svg) {
-      throw new Error("Please define entity and svg");
+    if (!config.entities || !config.svg) {
+      throw new Error("Please define entities and svg");
     }
 
     this.config = config;
