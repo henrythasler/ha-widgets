@@ -254,10 +254,14 @@ class EnergyFlowSvgCard extends HTMLElement {
       if (!icon) continue;
 
       // dim the icon if in standby mode
-      const saturation = isStandby ? 50 : 100;
-      const brightness = isStandby ? (isLightTheme ? 100 : 50) : 100;
-      icon.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`;
-
+      if (isLightTheme) {
+        // FIXME: Change icons
+      }
+      else {
+        const saturation = isStandby ? 50 : 100;
+        const brightness = isStandby ? 50 : 100;
+        icon.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`;
+      }
       // hide the glow gradient when the value is below a certain threshold  
       const glowGradient = glowGradients[i];
       if (glowGradient) {
