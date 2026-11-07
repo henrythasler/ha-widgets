@@ -62,7 +62,7 @@ class EnergyFlowSvgCard extends HTMLElement {
       this._svgReady = true;
 
       // Apply current Home Assistant values
-      this.updateEntities();
+      this.updateEnergyFlow();
 
     } catch (error) {
       console.error("SVG loading error:", error);
