@@ -66,8 +66,7 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     } catch (error) {
       console.error("SVG loading error:", error);
-
-      container.textContent = "Unable to load SVG";
+      container.textContent = `Unable to load SVG: ${error.message}`;
     }
   }
 
