@@ -2,7 +2,7 @@
   <style>
     svg {
       font-family: Open Sans;
-      --first-highlight: #F6D32D;
+      --first-highlight: #F5C211;
       --second-highlight: #3584E4;
       --third-highlight: #22c55e;
       --fourth-highlight: #A352CC;
