@@ -12,7 +12,14 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     this.innerHTML = `
       <ha-card>
-        <div id="svg-container" style="padding: 12px;">
+        <div id="svg-container"
+            style="
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box;
+              padding: 12px;
+              overflow: hidden;
+            ">
           Loading SVG...
         </div>
       </ha-card>
@@ -56,9 +63,18 @@ class EnergyFlowSvgCard extends HTMLElement {
       importedSvg.removeAttribute("width");
       importedSvg.removeAttribute("height");
 
-      importedSvg.style.width = "auto";
-      importedSvg.style.height = "100%";
+      importedSvg.style.width = "100%";
+      importedSvg.style.height = "auto";
+      importedSvg.style.maxWidth = "480px";
+      importedSvg.style.maxHeight = "80vh";
       importedSvg.style.display = "block";
+      importedSvg.style.margin = "0 auto";
+      importedSvg.style.objectFit = "contain";
+
+      importedSvg.setAttribute(
+        "preserveAspectRatio",
+        "xMidYMid meet"
+      );
 
       // Replace existing content
       container.replaceChildren(importedSvg);
