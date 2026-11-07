@@ -18,16 +18,19 @@ class EnergyFlowSvgCard extends HTMLElement {
   }
 
   async loadSvg() {
+    const container = this.querySelector("#svg-container");
+
     try {
       const response = await fetch(this.config.svg);
 
       if (!response.ok) {
-        throw new Error(`SVG loading failed: ${response.status}`);
+        throw new Error(`HTTP ${response.status}`);
       }
 
       const svgText = await response.text();
 
       const parser = new DOMParser();
+
       const doc = parser.parseFromString(
         svgText,
         "image/svg+xml"
@@ -36,25 +39,35 @@ class EnergyFlowSvgCard extends HTMLElement {
       const svg = doc.documentElement;
 
       if (
-        svg.tagName !== "svg" ||
+        svg.localName !== "svg" ||
         doc.querySelector("parsererror")
       ) {
-        throw new Error("Invalid SVG file");
+        throw new Error("Invalid SVG");
       }
 
-      const container = this.querySelector("#svg-container");
+      // Import the complete SVG document
+      const importedSvg = document.importNode(svg, true);
 
-      container.innerHTML = "";
-      container.appendChild(
-        document.importNode(svg, true)
-      );
+      // Make the SVG responsive
+      importedSvg.removeAttribute("width");
+      importedSvg.removeAttribute("height");
 
-      this.updateEnergyFlow();
+      importedSvg.style.width = "100%";
+      importedSvg.style.height = "auto";
+      importedSvg.style.display = "block";
+
+      // Replace existing content
+      container.replaceChildren(importedSvg);
+
+      this._svgReady = true;
+
+      // Apply current Home Assistant values
+      this.updateEntities();
+
     } catch (error) {
-      console.error("Temperature SVG Card:", error);
+      console.error("SVG loading error:", error);
 
-      this.querySelector("#svg-container").textContent =
-        "Error loading SVG";
+      container.textContent = "Unable to load SVG";
     }
   }
 
