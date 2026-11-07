@@ -52,8 +52,8 @@ class EnergyFlowSvgCard extends HTMLElement {
       importedSvg.removeAttribute("width");
       importedSvg.removeAttribute("height");
 
-      importedSvg.style.width = "100%";
-      importedSvg.style.height = "auto";
+      importedSvg.style.width = "auto";
+      importedSvg.style.height = "100%";
       importedSvg.style.display = "block";
 
       // Replace existing content
@@ -76,39 +76,20 @@ class EnergyFlowSvgCard extends HTMLElement {
   }
 
   updateEnergyFlow() {
-    if (!this._hass || !this.config) return;
-
-    const state = this._hass.states[this.config.entity];
-
-    if (!state || !Number.isFinite(Number(state.state))) {
-      return;
-    }
-
-    const energy = Number(state.state);
+    if (!this._hass || !this.config?.entities) return;
 
     const svg = this.querySelector("#svg-container svg");
 
-    // SVG may not have loaded yet
     if (!svg) return;
 
-    // const text = svg.querySelector("#temperature");
-    // const mercury = svg.querySelector("#mercury");
-    // const bulb = svg.querySelector("#bulb");
-
-    // if (text) {
-    //   text.textContent = `${temperature.toFixed(1)} °C`;
-    // }
-
-    // let color = "#03a9f4";
-
-    // if (temperature >= 25) {
-    //   color = "#f44336";
-    // } else if (temperature >= 20) {
-    //   color = "#ff9800";
-    // }
-
-    // if (mercury) mercury.setAttribute("fill", color);
-    // if (bulb) bulb.setAttribute("fill", color);
+    for (const [key, config] of Object.entries(this.config.entities)) {
+      const state = this._hass.states[config.entity];
+      if (!state) {
+        console.warn(`Entity not found: ${config.entity}`);
+        continue;
+      }
+      const value = Number(state.state);
+    }
   }
 
   getCardSize() {
