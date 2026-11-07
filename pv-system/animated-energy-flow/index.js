@@ -107,6 +107,8 @@ class EnergyFlowSvgCard extends HTMLElement {
     const standbyState = [false, false, false, false];
     const maxValues = [6000, 6000, 5000, 0];
 
+    const isLightTheme = this.config.theme || "light";
+
     // read values from Home Assistant states
     primaryValues[0] = Number(this._hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
     primaryValues[1] = Number(this._hass.states[this.config.entities["p_load"].entity]?.state) || 0;
@@ -117,7 +119,7 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     // Calculate Standby state
     standbyState[0] = primaryValues[0] < 10;
-    standbyState[2] = false;  // FIXME: map correct value for battery standby state
+    standbyState[2] = Number(this._hass.states[this.config.entities["bat_mode"].entity]?.state) == 0 || false;
 
     // update labels and units
     const primaryLabels = [null, null, null, null];
@@ -253,7 +255,7 @@ class EnergyFlowSvgCard extends HTMLElement {
 
       // dim the icon if in standby mode
       const saturation = isStandby ? 50 : 100;
-      const brightness = isStandby ? 50 : 100;
+      const brightness = isStandby ? (isLightTheme ? 100 : 50) : 100;
       icon.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`;
 
       // hide the glow gradient when the value is below a certain threshold  
