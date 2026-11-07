@@ -1,7 +1,11 @@
 class EnergyFlowSvgCard extends HTMLElement {
   setConfig(config) {
-    if (!config.entities || !config.svg) {
-      throw new Error("Please define entities and svg");
+    if (!config.svg) {
+      throw new Error("Please define svg");
+    }
+
+    if (!config.entities || Object.keys(config.entities).length === 0) {
+      throw new Error("Please define at least one entity in entities");
     }
 
     this.config = config;
@@ -77,19 +81,27 @@ class EnergyFlowSvgCard extends HTMLElement {
 
   updateEnergyFlow() {
     if (!this._hass || !this.config?.entities) return;
-
     const svg = this.querySelector("#svg-container svg");
-
     if (!svg) return;
 
-    for (const [key, config] of Object.entries(this.config.entities)) {
-      const state = this._hass.states[config.entity];
-      if (!state) {
-        console.warn(`Entity not found: ${config.entity}`);
-        continue;
-      }
-      const value = Number(state.state);
-    }
+    const radius = 100;
+    const circumference = 2 * Math.PI * radius;
+    const primaryValues = [null, null, null, null];
+    const secondaryValues = [null, null, null, null];
+    const standbyState = [false, false, false, false];
+    const maxValues = [6000, 6000, 5000, 0];
+
+    console.log(this.config.entities["p_pv"]);
+    primaryValues[0] = Number(this.__hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
+
+    // for (const [key, config] of Object.entries(this.config.entities)) {
+    //   const state = this._hass.states[config.entity];
+    //   if (!state) {
+    //     console.warn(`Entity not found: ${config.entity}`);
+    //     continue;
+    //   }
+    //   const value = Number(state.state);
+    // }
   }
 
   getCardSize() {
