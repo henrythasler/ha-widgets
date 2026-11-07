@@ -34,35 +34,35 @@
   <path d="M160,320L225,255" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
 
   <!-- Energy nodes -->
-  <circle id="node1" r="10" fill="var(--first-highlight, red)">
+  <circle id="node1" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" keyPoints="0;1"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node2" r="10" fill="var(--first-highlight, red)">
+  <circle id="node2" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" begin="-0.8s"
       keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node3" r="10" fill="var(--second-highlight, red)">
+  <circle id="node3" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node4" r="10" fill="var(--second-highlight, red)">
+  <circle id="node4" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node5" r="10" fill="var(--third-highlight, red)">
+  <circle id="node5" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node6" r="10" fill="var(--third-highlight, red)">
+  <circle id="node6" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node7" r="10" fill="var(--fourth-highlight, red)">
+  <circle id="node7" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node8" r="10" fill="var(--fourth-highlight, red)">
+  <circle id="node8" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
