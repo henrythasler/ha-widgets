@@ -92,7 +92,7 @@ class EnergyFlowSvgCard extends HTMLElement {
     const maxValues = [6000, 6000, 5000, 0];
 
     console.log(this.config.entities["p_pv"]);
-    primaryValues[0] = Number(this.__hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
+    primaryValues[0] = Number(this._hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
 
     // for (const [key, config] of Object.entries(this.config.entities)) {
     //   const state = this._hass.states[config.entity];
