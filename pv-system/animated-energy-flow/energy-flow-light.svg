@@ -112,6 +112,7 @@
         x="-10"
         y="0"
         font-size="24"
+        font-weight="bold"
         text-anchor="middle">0.00</text>
 
       <text
@@ -173,6 +174,7 @@
         x="-10"
         y="0"
         font-size="24"
+        font-weight="bold"
         text-anchor="middle">0.00</text>
 
       <text
@@ -216,6 +218,7 @@
         x="-10"
         y="0"
         font-size="24"
+        font-weight="bold"
         text-anchor="middle">0.00</text>
 
       <text
@@ -254,9 +257,9 @@
         y="118"
         text-anchor="middle"
         dominant-baseline="middle"
-        font-size="32"
+        font-size="24"
         font-family="sans-serif"
-        font-weight="regular"
+        font-weight="bold"
         fill="var(--third-highlight, red)"
       >100</text>
     </g>
@@ -324,6 +327,7 @@
         x="-10"
         y="0"
         font-size="24"
+        font-weight="bold"
         text-anchor="middle">0.00</text>
 
       <text
