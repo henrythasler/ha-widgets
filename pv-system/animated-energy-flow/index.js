@@ -222,8 +222,9 @@ class EnergyFlowSvgCard extends HTMLElement {
       node1.querySelector('animateMotion').setAttribute("keyPoints", keyPoints);
       node2.querySelector('animateMotion').setAttribute("keyPoints", keyPoints);
 
-      // set radius depending on the magnitude of the value as a fraction of the total energy, scaled to the range [minRadius, maxRadius]
-      const radius = Math.min(Math.max(Math.abs(value) / totalEnergy * maxRadius, minRadius), maxRadius);
+      // set area depending on the magnitude of the value as a fraction of the total energy, scaled to the range [minRadius, maxRadius]
+      const area = Math.abs(value) / totalEnergy * (Math.PI * maxRadius * maxRadius);
+      const radius = Math.min(Math.max(Math.sqrt(area / Math.PI), minRadius), maxRadius);
 
       node1.setAttribute("r", Math.abs(value) > threshold ? radius : 0);
       node2.setAttribute("r", Math.abs(value) > threshold ? radius : 0);
