@@ -107,7 +107,7 @@ class EnergyFlowSvgCard extends HTMLElement {
     const standbyState = [false, false, false, false];
     const maxValues = [6000, 6000, 5000, 0];
 
-    const isLightTheme = this.config.theme || "light";
+    const isLightTheme = this.config.theme === "light";
 
     // read values from Home Assistant states
     primaryValues[0] = Number(this._hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
