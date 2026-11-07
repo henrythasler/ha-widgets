@@ -1,0 +1,402 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+  <style>
+    svg {
+      font-family: Open Sans;
+      --first-highlight: #F6D32D;
+      --second-highlight: #3584E4;
+      --third-highlight: #22c55e;
+      --fourth-highlight: #A352CC;
+      --outline-color: #deddda;
+      --fill-color: #ffffff;
+      --label-color: #000000;
+      --center-background: #d73237;
+      --center-outline: #ffffff;
+      --center-icon: #fff;
+      --connection-color: #77767b;
+    }
+  </style>
+
+  <defs>
+    <!-- Dynamic glow effect -->
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Connection paths -->
+  <path d="M160,160L225,225" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
+  <path d="M320,160L255,225" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
+  <path d="M320,320L255,255" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
+  <path d="M160,320L225,255" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
+
+  <!-- Energy nodes -->
+  <circle id="node1" r="10" fill="var(--first-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" keyPoints="0;1"
+      keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node2" r="10" fill="var(--first-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" begin="-0.8s"
+      keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node3" r="10" fill="var(--second-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" keyPoints="1;0"
+      keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node4" r="10" fill="var(--second-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" begin="-0.8s"
+      keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node5" r="10" fill="var(--third-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" keyPoints="1;0"
+      keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node6" r="10" fill="var(--third-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" begin="-0.8s"
+      keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node7" r="10" fill="var(--fourth-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" keyPoints="1;0"
+      keyTimes="0;1" calcMode="linear" />
+  </circle>
+  <circle id="node8" r="10" fill="var(--fourth-highlight, red)">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" begin="-0.8s"
+      keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
+  </circle>
+
+  <!-- Top Left Widget -->
+  <g id="top_left" transform="translate(100, 100) scale(0.88) translate(-120, -120)">
+    <!-- Soft Glow Effect -->
+    <defs>
+      <radialGradient id="topLeftGlow">
+        <stop offset="0%" stop-color="var(--first-highlight, red)" stop-opacity="0.14" />
+        <stop offset="55%" stop-color="var(--first-highlight, red)" stop-opacity="0.05" />
+        <stop offset="100%" stop-color="var(--first-highlight, red)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <!-- Widget Outline and Background -->
+    <circle cx="120" cy="120" r="100" fill="var(--fill-color, white)"
+      stroke="var(--outline-color, red)" stroke-width="12" />
+
+    <!-- Background Glow -->
+    <!-- <circle cx="120" cy="110" r="88" fill="url(#topLeftGlow)" /> -->
+
+    <!-- Dynamic outer progress circle -->
+    <circle
+      id="topLeftProgress"
+      cx="120" cy="120" r="100"
+      fill="none"
+      stroke="var(--first-highlight, white)"
+      stroke-width="12"
+      stroke-linecap="round"
+      stroke-dasharray="628.32"
+      stroke-dashoffset="628.32"
+      transform="rotate(-90 120 120)"
+    />
+
+    <!--Icon-->
+    <svg xmlns="http://www.w3.org/2000/svg" id="topLeftIcon" viewBox="0 0 24 24" stroke="none"
+      fill="var(--first-highlight, red)" x="80" y="70" width="80" height="80">
+      <circle cx="12" cy="12" r="6" />
+      <path
+        d="M12 0a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1ZM0 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1ZM21 11a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM13 21a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2ZM6.343 17.657a1 1 0 0 1 0 1.414L4.93 20.485a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0ZM20.485 3.515a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0ZM3.515 3.515a1 1 0 0 1 1.414 0l1.414 1.414A1 1 0 1 1 4.93 6.343L3.515 4.93a1 1 0 0 1 0-1.414ZM17.657 17.657a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414l-1.414-1.414a1 1 0 0 1 0-1.414Z" />
+    </svg>
+
+    <!-- Sleep Indicator -->
+    <svg
+      id="topLeftSleepIndicator"
+      display="none"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      x="80"
+      y="70"
+      width="80"
+      height="80"
+      fill="var(--first-highlight, red)"
+    >
+      <!-- weather-night -->
+      <path
+        d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+    </svg>
+
+    <!-- Label value -->
+    <g id="topLeftPrimaryLabel"
+      transform="translate(120,178)"
+      font-family="sans-serif"
+      fill="var(--label-color, red)"
+      dominant-baseline="middle">
+
+      <text
+        id="topLeftLabelValue"
+        x="-10"
+        y="0"
+        font-size="24"
+        text-anchor="middle">0.00</text>
+
+      <text
+        id="topLeftLabelUnit"
+        x="30"
+        y="2"
+        font-size="16"
+        text-anchor="middle">kW</text>
+    </g>
+  </g>
+
+  <!-- Top Right Widget -->
+  <g id="top_right" transform="translate(380, 100) scale(0.88) translate(-120, -120)">
+    <!-- Soft Glow Effect -->
+    <defs>
+      <radialGradient id="topRightGlow">
+        <stop offset="0%" stop-color="var(--second-highlight, red)" stop-opacity="0.14" />
+        <stop offset="55%" stop-color="var(--second-highlight, red)" stop-opacity="0.05" />
+        <stop offset="100%" stop-color="var(--second-highlight, red)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <!-- Widget Outline and Background -->
+    <circle cx="120" cy="120" r="100" fill="var(--fill-color, white)"
+      stroke="var(--outline-color, red)" stroke-width="12" />
+
+    <!-- Background Glow -->
+    <!-- <circle cx="120" cy="110" r="88" fill="url(#topRightGlow)" /> -->
+
+    <!-- Dynamic outer progress circle -->
+    <circle
+      id="topRightProgress"
+      cx="120" cy="120" r="100"
+      fill="none"
+      stroke="var(--second-highlight, white)"
+      stroke-width="12"
+      stroke-linecap="round"
+      stroke-dasharray="628.32"
+      stroke-dashoffset="628.32"
+      transform="rotate(-90 120 120)"
+    />
+
+    <!--Icon-->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="topRightIcon"
+      viewBox="0 0 24 24"
+      fill="none"
+      x="80"
+      y="70"
+      width="80"
+      height="80"
+      stroke="var(--second-highlight, red)"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M3 10.5L12 3L21 10.5" />
+      <path d="M5 9.5V21H19V9.5" />
+    </svg>
+
+    <!-- Label value -->
+    <g id="topRightPrimaryLabel"
+      transform="translate(120,178)"
+      font-family="sans-serif"
+      fill="var(--label-color, red)"
+      dominant-baseline="middle">
+
+      <text
+        id="topRightLabelValue"
+        x="-10"
+        y="0"
+        font-size="24"
+        text-anchor="middle">0.00</text>
+
+      <text
+        id="topRightLabelUnit"
+        x="30"
+        y="2"
+        font-size="16"
+        text-anchor="middle">kW</text>
+    </g>
+  </g>
+
+  <!-- Bottom Right Widget -->
+  <g id="bottom_right" transform="translate(380, 380) scale(0.88) translate(-120, -120)">
+    <defs>
+      <radialGradient id="bottomRightGlow">
+        <stop offset="0%" stop-color="var(--third-highlight, red)" stop-opacity="0.14" />
+        <stop offset="55%" stop-color="var(--third-highlight, red)" stop-opacity="0.05" />
+        <stop offset="100%" stop-color="var(--third-highlight, red)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <circle cx="120" cy="120" r="100" fill="var(--fill-color, white)"
+      stroke="var(--outline-color, red)" stroke-width="12" />
+
+    <!-- Background Glow -->
+    <!-- <circle cx="120" cy="110" r="88" fill="url(#bottomRightGlow)" /> -->
+
+    <!-- Dynamic outer progress circle -->
+    <circle
+      id="bottomRightProgress"
+      cx="120" cy="120" r="100"
+      fill="none"
+      stroke="var(--third-highlight, white)"
+      stroke-width="12"
+      stroke-linecap="round"
+      stroke-dasharray="628.32"
+      stroke-dashoffset="628.32"
+      transform="rotate(-90 120 120)"
+    />
+
+    <!--Label
+    value -->
+    <g id="bottomRightPrimaryLabel"
+      transform="translate(120,178)"
+      font-family="sans-serif"
+      fill="var(--label-color, red)"
+      dominant-baseline="middle"
+    >
+
+      <text
+        id="bottomRightLabelValue"
+        x="-10"
+        y="0"
+        font-size="24"
+        text-anchor="middle">0.00</text>
+
+      <text
+        id="bottomRightLabelUnit"
+        x="30"
+        y="2"
+        font-size="16"
+        text-anchor="middle">kW</text>
+    </g>
+
+    <!-- Battery outline -->
+    <g id="bottomRightIcon">
+      <rect
+        id="battery"
+        x="75" y="90"
+        width="90" height="50"
+        rx="6"
+        fill="none"
+        stroke="var(--third-highlight, red)"
+        stroke-width="5"
+      />
+
+      <!-- Battery terminal -->
+      <rect
+        id="batteryTerminal"
+        x="169" y="105"
+        width="8" height="20"
+        rx="2"
+        fill="var(--third-highlight, red)"
+      />
+
+      <!-- Percentage centered inside battery -->
+      <text
+        id="bottomRightSecondaryLabel"
+        x="120"
+        y="118"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-size="32"
+        font-family="sans-serif"
+        font-weight="regular"
+        fill="var(--third-highlight, red)"
+      >100</text>
+    </g>
+
+    <!-- Sleep Indicator -->
+    <svg
+      id="bottomRightSleepIndicator"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      x="165"
+      y="65"
+      width="24"
+      height="24"
+      fill="var(--third-highlight, red)"
+    >
+      <!-- Moon Stars -->
+      <path
+        d="M15,8L12,5l3-3l3,3L15,8Zm5,3L18,9l2-2l2,2l-2,2ZM12.08,22q-2.1,0-3.94-0.8t-3.2-2.16q-1.36-1.36-2.16-3.2T1.98,11.9q0-3.65 2.32-6.44T10.23,2Q9.78,4.47 10.5,6.84T13,10.98q1.78,1.78 4.14,2.5t4.84,0.28q-0.65,3.6-3.45,5.93T12.08,22Zm0-2q2.2,0 4.08-1.1t2.95-3.02q-2.15-0.2-4.08-1.09t-3.45-2.41T9.15,8.92T8.08,4.85Q6.15,5.93 5.06,7.81Q3.98,9.7 3.98,11.9q0,3.38 2.36,5.74T12.08,20Zm-0.5-7.63Z" />
+    </svg>
+  </g>
+
+  <!-- Bottom Left Widget -->
+  <g id="bottom_left" transform="translate(100, 380) scale(0.88) translate(-120, -120)">
+    <defs>
+      <radialGradient id="bottomLeftGlow">
+        <stop offset="0%" stop-color="var(--fourth-highlight, red)" stop-opacity="0.14" />
+        <stop offset="55%" stop-color="var(--fourth-highlight, red)" stop-opacity="0.05" />
+        <stop offset="100%" stop-color="var(--fourth-highlight, red)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <circle cx="120" cy="120" r="100" fill="var(--fill-color, white)"
+      stroke="var(--outline-color, red)" stroke-width="12" />
+    <!-- <circle cx="120" cy="110" r="88" fill="url(#bottomLeftGlow)" /> -->
+
+    <!--Icon-->
+    <svg xmlns="http://www.w3.org/2000/svg"
+      id="bottomLeftIcon"
+      viewBox="0 0 24 24"
+      stroke="none"
+      fill="var(--fourth-highlight, red)"
+      x="80"
+      y="70"
+      width="80"
+      height="80"
+    >
+      <path
+        d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" />
+    </svg>
+
+    <!-- Dynamic outer progress circle -->
+    <circle
+      id="bottomLeftProgress"
+      cx="120" cy="120" r="100"
+      fill="none"
+      stroke="var(--fourth-highlight, white)"
+      stroke-width="12"
+      stroke-linecap="round"
+      stroke-dasharray="628.32"
+      stroke-dashoffset="628.32"
+      transform="rotate(-90 120 120)"
+    />
+
+    <!--Label
+    value -->
+    <g id="bottomLeftPrimaryLabel"
+      transform="translate(120,178)"
+      font-family="sans-serif"
+      fill="var(--label-color, red)"
+      dominant-baseline="middle">
+
+      <text
+        id="bottomLeftLabelValue"
+        x="-10"
+        y="0"
+        font-size="24"
+        text-anchor="middle">0.00</text>
+
+      <text
+        id="bottomLeftLabelUnit"
+        x="30"
+        y="2"
+        font-size="16"
+        text-anchor="middle">kW</text>
+    </g>
+  </g>
+
+  <!-- Center Widget -->
+  <g id="center" transform="translate(240, 240) scale(0.2) translate(-120, -120)">
+    <circle cx="120" cy="120" r="150" fill="var(--center-background, white)"
+      stroke="var(--center-outline, red)" stroke-width="10" />
+    <svg id="center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="240"
+      height="240">
+      <path
+        d="M512,256c0,141.38-114.62,256-256,256S0,397.38,0,256,114.62,0,256,0s256,114.62,256,256Z"
+        fill="var(--center-background, white)" />
+    </svg>
+  </g>
+</svg>
