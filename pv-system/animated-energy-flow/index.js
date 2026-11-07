@@ -91,7 +91,13 @@ class EnergyFlowSvgCard extends HTMLElement {
     const standbyState = [false, false, false, false];
     const maxValues = [6000, 6000, 5000, 0];
 
+    // read values from Home Assistant states
     primaryValues[0] = Number(this._hass.states[this.config.entities["p_pv"].entity]?.state) || 0;
+    primaryValues[1] = Number(this._hass.states[this.config.entities["p_load"].entity]?.state) || 0;
+    primaryValues[2] = Number(this._hass.states[this.config.entities["p_akku"].entity]?.state) || 0;
+    primaryValues[3] = Number(this._hass.states[this.config.entities["p_grid"].entity]?.state) || 0;
+
+    secondaryValues[0] = Number(this._hass.states[this.config.entities["soc"].entity]?.state) || 0;
 
     // update labels and units
     const primaryLabels = [null, null, null, null];
