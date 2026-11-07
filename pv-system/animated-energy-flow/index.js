@@ -99,6 +99,10 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     secondaryValues[0] = Number(this._hass.states[this.config.entities["soc"].entity]?.state) || 0;
 
+    // Calculate Standby state
+    standbyState[0] = primaryValues[0] < 10;
+    standbyState[2] = Number(data.series.find(s => s.refId === 'bat_mode_cell_state')?.fields[1].values.at(-1)) == 0;
+
     // update labels and units
     const primaryLabels = [null, null, null, null];
     const primaryUnits = [null, null, null, null];
@@ -120,6 +124,7 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     const gap = 5;
 
+    // iterate over primary values and update labels and units
     for (let i = 0; i < primaryValues.length; i++) {
       const label = primaryLabels[i];
       const unit = primaryUnits[i];
@@ -142,12 +147,114 @@ class EnergyFlowSvgCard extends HTMLElement {
       }
     }
 
+    // iterate over secondary values and update labels
     for (let i = 0; i < secondaryValues.length; i++) {
       const label = secondaryLabels[i];
       const value = secondaryValues[i];
 
       if (label) {
         label.textContent = `${(Math.abs(value) > 15) ? Math.floor(value) : Math.round(value * 10) / 10}`;
+      }
+    }
+
+    // update progress circles
+    const progressContainer = [null, null, null, null];
+
+    progressContainer[0] = svg.getElementById('topLeftProgress');
+    progressContainer[1] = svg.getElementById('topRightProgress');
+    progressContainer[2] = svg.getElementById('bottomRightProgress');
+    progressContainer[3] = svg.getElementById('bottomLeftProgress');
+
+    for (let i = 0; i < primaryValues.length; i++) {
+      const container = progressContainer[i];
+      const value = Math.abs(primaryValues[i]);
+      if (container && value) {
+        container.setAttribute("stroke-dasharray", circumference);
+        container.setAttribute("stroke-dashoffset", circumference * (1 - value / maxValues[i]));
+      }
+    }
+
+    // update energy node animations and radius scaling
+    const energyNodes = [];
+    energyNodes.push(svg.getElementById('node1'));
+    energyNodes.push(svg.getElementById('node2'));
+    energyNodes.push(svg.getElementById('node3'));
+    energyNodes.push(svg.getElementById('node4'));
+    energyNodes.push(svg.getElementById('node5'));
+    energyNodes.push(svg.getElementById('node6'));
+    energyNodes.push(svg.getElementById('node7'));
+    energyNodes.push(svg.getElementById('node8'));
+
+    // Energy Node animation and radius scaling
+    const minRadius = 3;
+    const maxRadius = 10;
+    const threshold = 10; // Absolute value threshold for displaying the node
+
+    // sum of positive values of primaryValues for scaling the radius; exclude values below the threshold
+    const totalEnergy = primaryValues.reduce((acc, val) => {
+      if (Math.abs(val) <= threshold) return acc; // Skip values below the threshold
+      return acc + Math.max(val, 0);
+    }, 0);
+
+    for (let i = 0; i < primaryValues.length; i++) {
+      const value = primaryValues[i];
+      const node1 = energyNodes[i * 2];
+      const node2 = energyNodes[i * 2 + 1];
+
+      // set animation direction depending on the sign of the value
+      const keyPoints = (value > 0) ? "0;1" : "1;0";
+      node1.querySelector('animateMotion').setAttribute("keyPoints", keyPoints);
+      node2.querySelector('animateMotion').setAttribute("keyPoints", keyPoints);
+
+      // set radius depending on the magnitude of the value as a fraction of the total energy, scaled to the range [minRadius, maxRadius]
+      const radius = Math.min(Math.max(Math.abs(value) / totalEnergy * maxRadius, minRadius), maxRadius);
+
+      node1.setAttribute("r", Math.abs(value) > threshold ? radius : 0);
+      node2.setAttribute("r", Math.abs(value) > threshold ? radius : 0);
+    }
+
+    // update standby state for icons, glow gradients, and progress circles
+    const Icons = [null, null, null, null];
+    Icons[0] = svg.getElementById('topLeftIcon');
+    Icons[1] = svg.getElementById('topRightIcon');
+    Icons[2] = svg.getElementById('bottomRightIcon');
+    Icons[3] = svg.getElementById('bottomLeftIcon');
+
+    const glowGradients = [null, null, null, null];
+    glowGradients[0] = svg.getElementById('topLeftGlow');
+    glowGradients[1] = svg.getElementById('topRightGlow');
+    glowGradients[2] = svg.getElementById('bottomRightGlow');
+    glowGradients[3] = svg.getElementById('bottomLeftGlow');
+
+    const standbyIcons = [null, null, null, null];
+    standbyIcons[2] = svg.getElementById('bottomRightSleepIndicator');
+
+    for (let i = 0; i < standbyState.length; i++) {
+      const isStandby = standbyState[i];
+      const icon = Icons[i];
+      if (!icon) continue;
+
+      // dim the icon if in standby mode
+      const saturation = isStandby ? 50 : 100;
+      const brightness = isStandby ? 50 : 100;
+      icon.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`;
+
+      // hide the glow gradient when the value is below a certain threshold  
+      const glowGradient = glowGradients[i];
+      if (glowGradient) {
+        glowGradient.style.display = isStandby ? 'none' : 'block';
+      }
+
+      // hide the outer progress circle when the value is below a certain threshold
+      const progressCircle = progressContainer[i];
+      if (progressCircle) {
+        progressCircle.style.display = isStandby ? 'none' : 'block';
+      }
+
+      // show the standby icon when in standby mode
+      const standbyIcon = standbyIcons[i];
+      if (standbyIcon) {
+        standbyIcon.style.display = isStandby ? 'block' : 'none';
       }
     }
   }
