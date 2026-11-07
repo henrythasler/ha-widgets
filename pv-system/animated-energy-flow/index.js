@@ -117,7 +117,7 @@ class EnergyFlowSvgCard extends HTMLElement {
 
     // Calculate Standby state
     standbyState[0] = primaryValues[0] < 10;
-    standbyState[2] = Number(data.series.find(s => s.refId === 'bat_mode_cell_state')?.fields[1].values.at(-1)) == 0;
+    standbyState[2] = false;  // FIXME: map correct value for battery standby state
 
     // update labels and units
     const primaryLabels = [null, null, null, null];
