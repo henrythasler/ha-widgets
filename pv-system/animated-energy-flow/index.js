@@ -171,7 +171,7 @@ class EnergyFlowSvgCard extends HTMLElement {
       const value = secondaryValues[i];
 
       if (label) {
-        label.textContent = `${(Math.abs(value) > 15) ? Math.floor(value) : Math.round(value * 10) / 10}`;
+        label.textContent = `${(Math.abs(value) > 15) ? Math.floor(value) : Math.round(value * 10) / 10}﹪`;
       }
     }
 

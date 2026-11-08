@@ -261,7 +261,7 @@
         font-family="sans-serif"
         font-weight="bold"
         fill="var(--third-highlight, red)"
-      >100</text>
+      >100﹪</text>
     </g>
 
     <!-- Sleep Indicator -->
