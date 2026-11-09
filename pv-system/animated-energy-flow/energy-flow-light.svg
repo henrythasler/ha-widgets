@@ -9,9 +9,9 @@
       --outline-color: #deddda;
       --fill-color: #ffffff;
       --label-color: #000000;
-      --center-background: #d73237;
-      --center-outline: #ffffff;
-      --center-icon: #fff;
+      --center-background: #ffffff;
+      --center-outline: #deddda;
+      --center-icon: #ff7800;
       --connection-color: #77767b;
     }
   </style>
@@ -23,35 +23,43 @@
   <path d="M160,320L225,255" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
 
   <!-- Energy nodes -->
-  <circle id="node1" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
+  <circle id="node1" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" keyPoints="0;1"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node2" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
+  <circle id="node2" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" begin="-0.8s"
       keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node3" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
+  <circle id="node3" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node4" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
+  <circle id="node4" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node5" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
+  <circle id="node5" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node6" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
+  <circle id="node6" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node7" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
+  <circle id="node7" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node8" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
+  <circle id="node8" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
@@ -269,15 +277,24 @@
       id="bottomRightSleepIndicator"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      x="165"
-      y="65"
-      width="24"
-      height="24"
+      x="130"
+      y="50"
+      width="40"
+      height="40"
       fill="var(--third-highlight, red)"
     >
-      <!-- Moon Stars -->
+      <!-- sleep   -->
       <path
-        d="M15,8L12,5l3-3l3,3L15,8Zm5,3L18,9l2-2l2,2l-2,2ZM12.08,22q-2.1,0-3.94-0.8t-3.2-2.16q-1.36-1.36-2.16-3.2T1.98,11.9q0-3.65 2.32-6.44T10.23,2Q9.78,4.47 10.5,6.84T13,10.98q1.78,1.78 4.14,2.5t4.84,0.28q-0.65,3.6-3.45,5.93T12.08,22Zm0-2q2.2,0 4.08-1.1t2.95-3.02q-2.15-0.2-4.08-1.09t-3.45-2.41T9.15,8.92T8.08,4.85Q6.15,5.93 5.06,7.81Q3.98,9.7 3.98,11.9q0,3.38 2.36,5.74T12.08,20Zm-0.5-7.63Z" />
+        d="M23,12H17V10L20.39,6H17V4H23V6L19.62,10H23V12M15,16H9V14L12.39,10H9V8H15V10L11.62,14H15V16M7,20H1V18L4.39,14H1V12H7V14L3.62,18H7V20Z" />
+
+      <!-- Moon Stars       
+      <path
+      d="M15,8L12,5l3-3l3,3L15,8Zm5,3L18,9l2-2l2,2l-2,2ZM12.08,22q-2.1,0-3.94-0.8t-3.2-2.16q-1.36-1.36-2.16-3.2T1.98,11.9q0-3.65
+    2.32-6.44T10.23,2Q9.78,4.47 10.5,6.84T13,10.98q1.78,1.78
+    4.14,2.5t4.84,0.28q-0.65,3.6-3.45,5.93T12.08,22Zm0-2q2.2,0
+    4.08-1.1t2.95-3.02q-2.15-0.2-4.08-1.09t-3.45-2.41T9.15,8.92T8.08,4.85Q6.15,5.93
+    5.06,7.81Q3.98,9.7 3.98,11.9q0,3.38 2.36,5.74T12.08,20Zm-0.5-7.63Z" />
+      -->
     </svg>
   </g>
 
@@ -340,14 +357,13 @@
   </g>
 
   <!-- Center Widget -->
-  <g id="center" transform="translate(240, 240) scale(0.2) translate(-120, -120)">
-    <circle cx="120" cy="120" r="150" fill="var(--center-background, white)"
-      stroke="var(--center-outline, red)" stroke-width="10" />
-    <svg id="center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="240"
-      height="240">
-      <path
-        d="M512,256c0,141.38-114.62,256-256,256S0,397.38,0,256,114.62,0,256,0s256,114.62,256,256Z"
-        fill="var(--center-background, white)" />
+  <g id="center" transform="translate(240, 240) scale(.3) translate(-120, -120)">
+    <circle cx="120" cy="120" r="120" fill="var(--center-background, white)"
+      stroke="var(--center-outline, red)" stroke-width="5" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="240px" width="240px"
+      transform="translate(120, 120) scale(0.750) translate(-120, -120)"
+      fill="var(--center-icon, white)">
+      <path d="M11 15H6L13 1V9H18L11 23V15Z" />
     </svg>
   </g>
 </svg>

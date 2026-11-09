@@ -3,7 +3,7 @@
     svg {
       font-family: Open Sans;
       --first-highlight: #E0CC0C;
-      --second-highlight: #3274D9;
+      --second-highlight: #489cfd;
       --third-highlight: #22c55e;
       --fourth-highlight: #A352CC;
       --outline-color: #3d3846;
@@ -395,11 +395,9 @@
   <g id="center" transform="translate(240, 240) scale(0.2) translate(-120, -120)">
     <circle cx="120" cy="120" r="150" fill="var(--center-background, white)"
       stroke="var(--center-outline, red)" stroke-width="10" />
-    <svg id="center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="240"
-      height="240">
-      <path
-        d="M512,256c0,141.38-114.62,256-256,256S0,397.38,0,256,114.62,0,256,0s256,114.62,256,256Z"
-        fill="var(--center-background, white)" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="240px" width="240px"
+      fill="var(--center-icon, white)">
+      <path d="M11 15H6L13 1V9H18L11 23V15Z" />
     </svg>
   </g>
 </svg>
