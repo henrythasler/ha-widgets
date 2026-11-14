@@ -105,7 +105,7 @@ class EnergyFlowSvgCard extends HTMLElement {
     const primaryValues = [null, null, null, null];
     const secondaryValues = [null, null, null, null];
     const standbyState = [false, false, false, false];
-    const maxValues = [6000, 6000, 5000, 0];
+    const maxValues = [6000, 6240, 5000, 0];
 
     const isLightTheme = this.config.theme === "light";
 
@@ -188,7 +188,7 @@ class EnergyFlowSvgCard extends HTMLElement {
       const value = Math.abs(primaryValues[i]);
       if (container && value) {
         container.setAttribute("stroke-dasharray", circumference);
-        container.setAttribute("stroke-dashoffset", circumference * (1 - value / maxValues[i]));
+        container.setAttribute("stroke-dashoffset", circumference * Math.max(0, 1 - value / maxValues[i]));
       }
     }
 
@@ -233,40 +233,15 @@ class EnergyFlowSvgCard extends HTMLElement {
     }
 
     // update standby state for icons, glow gradients, and progress circles
-    const Icons = [null, null, null, null];
-    Icons[0] = svg.getElementById('topLeftIcon');
-    Icons[1] = svg.getElementById('topRightIcon');
-    Icons[2] = svg.getElementById('bottomRightIcon');
-    Icons[3] = svg.getElementById('bottomLeftIcon');
+    const standbyShowIcons = [null, null, null, null];
+    standbyShowIcons[0] = svg.getElementById('topLeftStandbyIcon');
+    standbyShowIcons[2] = svg.getElementById('bottomRightSleepIndicator');
 
-    const glowGradients = [null, null, null, null];
-    glowGradients[0] = svg.getElementById('topLeftGlow');
-    glowGradients[1] = svg.getElementById('topRightGlow');
-    glowGradients[2] = svg.getElementById('bottomRightGlow');
-    glowGradients[3] = svg.getElementById('bottomLeftGlow');
-
-    const standbyIcons = [null, null, null, null];
-    standbyIcons[2] = svg.getElementById('bottomRightSleepIndicator');
+    const standbyHideIcons = [null, null, null, null];
+    standbyHideIcons[0] = svg.getElementById('topLeftIcon');
 
     for (let i = 0; i < standbyState.length; i++) {
       const isStandby = standbyState[i];
-      const icon = Icons[i];
-      if (!icon) continue;
-
-      // dim the icon if in standby mode
-      if (isLightTheme) {
-        // FIXME: Change icons
-      }
-      else {
-        const saturation = isStandby ? 50 : 100;
-        const brightness = isStandby ? 50 : 100;
-        icon.style.filter = `saturate(${saturation}%) brightness(${brightness}%)`;
-      }
-      // hide the glow gradient when the value is below a certain threshold  
-      const glowGradient = glowGradients[i];
-      if (glowGradient) {
-        glowGradient.style.display = isStandby ? 'none' : 'block';
-      }
 
       // hide the outer progress circle when the value is below a certain threshold
       const progressCircle = progressContainer[i];
@@ -274,8 +249,14 @@ class EnergyFlowSvgCard extends HTMLElement {
         progressCircle.style.display = isStandby ? 'none' : 'block';
       }
 
+      // hide the main icon when in standby mode
+      const mainIcon = standbyHideIcons[i];
+      if (mainIcon) {
+        mainIcon.style.display = isStandby ? 'none' : 'block';
+      }
+
       // show the standby icon when in standby mode
-      const standbyIcon = standbyIcons[i];
+      const standbyIcon = standbyShowIcons[i];
       if (standbyIcon) {
         standbyIcon.style.display = isStandby ? 'block' : 'none';
       }

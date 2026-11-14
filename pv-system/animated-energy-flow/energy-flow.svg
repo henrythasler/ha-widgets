@@ -34,35 +34,43 @@
   <path d="M160,320L225,255" id="gridPath" stroke="var(--connection-color, red)" stroke-width="1.5" />
 
   <!-- Energy nodes -->
-  <circle id="node1" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
+  <circle id="node1" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" keyPoints="0;1"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node2" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--first-highlight, red)">
+  <circle id="node2" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--first-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,160L225,225" begin="-0.8s"
       keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node3" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
+  <circle id="node3" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node4" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--second-highlight, red)">
+  <circle id="node4" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--second-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,160L255,225" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node5" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
+  <circle id="node5" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node6" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--third-highlight, red)">
+  <circle id="node6" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--third-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M320,320L255,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node7" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
+  <circle id="node7" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" keyPoints="1;0"
       keyTimes="0;1" calcMode="linear" />
   </circle>
-  <circle id="node8" r="10" stroke="var(--fill-color, red)" stroke-width="2" fill="var(--fourth-highlight, red)">
+  <circle id="node8" r="10" stroke="var(--fill-color, red)" stroke-width="2"
+    fill="var(--fourth-highlight, red)">
     <animateMotion dur="1.6s" repeatCount="indefinite" path="M160,320L225,255" begin="-0.8s"
       keyPoints="1;0" keyTimes="0;1" calcMode="linear" />
   </circle>
@@ -105,6 +113,14 @@
       <circle cx="12" cy="12" r="6" />
       <path
         d="M12 0a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1ZM0 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1ZM21 11a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM13 21a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2ZM6.343 17.657a1 1 0 0 1 0 1.414L4.93 20.485a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0ZM20.485 3.515a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0ZM3.515 3.515a1 1 0 0 1 1.414 0l1.414 1.414A1 1 0 1 1 4.93 6.343L3.515 4.93a1 1 0 0 1 0-1.414ZM17.657 17.657a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414l-1.414-1.414a1 1 0 0 1 0-1.414Z" />
+    </svg>
+
+    <!-- Night Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" id="topLeftStandbyIcon" viewBox="0 0 24 24"
+      stroke="none"
+      fill="var(--first-highlight, red)" x="80" y="70" width="80" height="80" display="none">
+      <path
+        d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
     </svg>
 
     <!-- Sleep Indicator -->
@@ -314,15 +330,15 @@
       id="bottomRightSleepIndicator"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      x="165"
-      y="65"
-      width="24"
-      height="24"
+      x="130"
+      y="50"
+      width="40"
+      height="40"
       fill="var(--third-highlight, red)"
     >
-      <!-- Moon Stars -->
+      <!-- sleep   -->
       <path
-        d="M15,8L12,5l3-3l3,3L15,8Zm5,3L18,9l2-2l2,2l-2,2ZM12.08,22q-2.1,0-3.94-0.8t-3.2-2.16q-1.36-1.36-2.16-3.2T1.98,11.9q0-3.65 2.32-6.44T10.23,2Q9.78,4.47 10.5,6.84T13,10.98q1.78,1.78 4.14,2.5t4.84,0.28q-0.65,3.6-3.45,5.93T12.08,22Zm0-2q2.2,0 4.08-1.1t2.95-3.02q-2.15-0.2-4.08-1.09t-3.45-2.41T9.15,8.92T8.08,4.85Q6.15,5.93 5.06,7.81Q3.98,9.7 3.98,11.9q0,3.38 2.36,5.74T12.08,20Zm-0.5-7.63Z" />
+        d="M23,12H17V10L20.39,6H17V4H23V6L19.62,10H23V12M15,16H9V14L12.39,10H9V8H15V10L11.62,14H15V16M7,20H1V18L4.39,14H1V12H7V14L3.62,18H7V20Z" />
     </svg>
   </g>
 
